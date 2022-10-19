@@ -1,5 +1,6 @@
 body{
     margin: 0;
+    background-color: antiquewhite;
 }
 
 .container{
@@ -11,7 +12,7 @@ body{
 }
 
 .mainnav{
-    background: rgb(198, 206, 255);
+    background: rgb(198, 186, 171);
     width: 100vw;
 }
 
@@ -21,6 +22,10 @@ ul{
 
 main{
     flex-grow: 1;
+    width: 100vw;
+    display: flex;  
+    align-items: center;
+    flex-direction: column;
 }
 
 #search{
@@ -28,5 +33,79 @@ main{
     width: 20rem;
     height: 3rem;
     font-size: 1.5rem;
+    border-radius: 10px 0 10px 0;
 }
 
+.listing{
+    margin-top: 10rem;
+    display: grid;
+    grid-template-columns: repeat(3, 20rem);
+    justify-content: center;
+    gap: 20px;
+}
+
+#card{
+
+    background-color: rgb(204, 191, 174);
+    border-radius: 10px 0 10px 0;
+    width: 20rem;
+    height: 10rem;
+    transition: all ease 0.2s;
+}
+
+#card:hover {
+    transform: scale(1.1);
+}
+
+#card:hover #favBtn{
+    opacity: 1;
+    cursor: pointer;
+}
+
+.cardUp{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+.artistInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+   
+}
+
+#trackName {
+    font-size: 1.1em;
+
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#artistName{
+    font-size: 1em;
+    font-weight: 600;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+audio{
+    border-radius: 0 0 8px 0;
+}
+
+#favBtn{
+    background-color: #3d3a37;
+    color: white;
+    border: none;
+    border-radius: 10px 0 10px 0;
+    aspect-ratio: 1;
+    margin: 10px;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    opacity: 0;
+    transition: all ease 0.2s;
+}

@@ -48,7 +48,7 @@ document.addEventListener('play', element => {
 
 //Search feature
 if(location.pathname === '/index.html'){
-    document.getElementById("search").addEventListener('keyup',(e) => {
+    document.getElementById("search").addEventListener('input',(e) => {
         
         searchSongs(e.target.value)
         localStorage.setItem('lastSearch', e.target.value)

@@ -1,6 +1,6 @@
 body{
     margin: 0;
-    background-color: antiquewhite;
+    background-color: rgb(190, 153, 188);
 }
 
 .container{
@@ -8,12 +8,12 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
+    
 }
 
-.mainnav{
-    background: rgb(198, 186, 171);
-    width: 100vw;
+.navbar{
+    background: rgb(155, 121, 153);
 }
 
 ul{
@@ -21,51 +21,83 @@ ul{
 }
 
 main{
-    flex-grow: 1;
+
     width: 100vw;
-    display: flex;  
-    align-items: center;
     flex-direction: column;
 }
 
 #search{
-    margin-top: 20px;
-    width: 20rem;
-    height: 3rem;
-    font-size: 1.5rem;
+
     border-radius: 10px 0 10px 0;
+    border: 0;
+    padding-left: 10px;
+}
+
+#search:focus {
+    outline: none;
+    border: none;
+}
+
+.toFav{
+width: 50px;
+height: 50px;
+border: none;
+background: none;
+}
+
+.toFav a {
+    font-size: 30px;
+    transition: all ease 0.2s;
+    color: rgb(87, 61, 85)
+}
+
+.toFav a:hover {
+    font-size: 35px;
+
+}
+
+.toFav a:active {
+    color: rgb(155, 121, 153);
+}
+
+.input{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .listing{
     margin-top: 10rem;
     display: grid;
-    grid-template-columns: repeat(3, 20rem);
+    grid-template-columns: repeat(auto-fit, 20rem);
     justify-content: center;
     gap: 20px;
 }
 
-#card{
+.listingFavorites {
+    margin-top: 10rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 20rem);
+    justify-content: center;
+    gap: 20px;
+}
 
-    background-color: rgb(204, 191, 174);
+.card{
+
+    background-color: rgb(155, 121, 153);
     border-radius: 10px 0 10px 0;
-    width: 20rem;
-    height: 10rem;
+    width: 100%;
     transition: all ease 0.2s;
-}
+    display: flex;
+    flex-direction: column;
 
-#card:hover {
-    transform: scale(1.1);
-}
-
-#card:hover #favBtn{
-    opacity: 1;
-    cursor: pointer;
 }
 
 .cardUp{
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    justify-content: space-around;
+    flex-grow: 1;
 }
 
 img {
@@ -75,18 +107,20 @@ img {
 
 .artistInfo{
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     gap: 10px;
+    margin-left: 10px;
    
 }
 
-#trackName {
+.trackName {
     font-size: 1.1em;
 
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-#artistName{
+.artistName{
     font-size: 1em;
     font-weight: 600;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -94,11 +128,19 @@ img {
 
 audio{
     border-radius: 0 0 8px 0;
+    margin-top: 10px;
+    width: 100%;
+    
 }
 
-#favBtn{
-    background-color: #3d3a37;
-    color: white;
+audio:hover {
+   cursor: pointer;;
+
+}
+
+.favBtn{
+    background-color: #362323;
+    color: rgb(239, 239, 239);
     border: none;
     border-radius: 10px 0 10px 0;
     aspect-ratio: 1;
@@ -108,4 +150,18 @@ audio{
     font-size: 18px;
     opacity: 0;
     transition: all ease 0.2s;
+}
+
+.red{
+    color: rgb(242, 86, 86) !important;
+    transition: all ease 0.1s;
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+.card:hover .favBtn {
+    opacity: 1 !important;
+    cursor: pointer;
 }

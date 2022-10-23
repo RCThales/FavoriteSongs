@@ -3,8 +3,8 @@ let favoriteIds = []
 let songs = []
 let limit = 10;
 
-window.addEventListener('load', (e) => {
-
+const load = () => {
+  
     if(localStorage.getItem('Favorites') !== null) favorites = JSON.parse(localStorage.getItem('Favorites'))
 
     if(localStorage.getItem('FavoriteIds') !== null) favoriteIds = JSON.parse(localStorage.getItem('FavoriteIds'))
@@ -31,8 +31,7 @@ window.addEventListener('load', (e) => {
         searchSongs(input.value)
         break;
    }
-
-})
+}
 
 //Avoid that the songs are played at the same time
 document.addEventListener('play', element => {

@@ -5,12 +5,10 @@ let limit = 10;
 
 const load = () => {
   
+    //Getting information from local storage on load
     if(localStorage.getItem('Favorites') !== null) favorites = JSON.parse(localStorage.getItem('Favorites'))
 
-    if(localStorage.getItem('FavoriteIds') !== null) favoriteIds = JSON.parse(localStorage.getItem('FavoriteIds'))
-
-    console.log(favorites);
-    console.log(favoriteIds);
+    if(localStorage.getItem('FavoriteIds') !== null) favoriteIds = JSON.parse(localStorage.getItem('FavoriteIds'));
     
     document.getElementById('currentLimit').textContent = limit
 
@@ -151,11 +149,11 @@ const renderSongs = (value) => {
             }
             compressedArtistName = artistName.innerHTML += '...'
 
-            card.addEventListener('mouseover',(e) => {
+            card.addEventListener('pointerover',(e) => {
                 artistName.innerHTML = element.artistName
             })
 
-             card.addEventListener('mouseleave',(e) => {
+             card.addEventListener('pointerleave',(e) => {
                 artistName.innerHTML = compressedArtistName
             })
         }

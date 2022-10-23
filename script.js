@@ -172,7 +172,7 @@ const renderSongs = (value) => {
         btnIcon.id = String(element.trackId) 
 
         favBtn.appendChild(btnIcon)
-        favBtn.addEventListener('click', () => {
+        favBtn.addEventListener('pointerup', () => {
             if(!element.isFavorite){
                 addToFav(element)
                 element.isFavorite = true

@@ -47,14 +47,16 @@ document.addEventListener('play', element => {
 }, true);
 
 //Search feature
-if(location.pathname === '/index.html'){
-    document.getElementById("search").addEventListener('input',(e) => {
-        
-        searchSongs(e.target.value)
-        localStorage.setItem('lastSearch', e.target.value)
+const searchFunction = () => {
     
-    })
+    const search = document.getElementById('search')
+
+    searchSongs(search.value)
+    localStorage.setItem('lastSearch', search.value)
+
 }
+
+  
 
 //ITUNES API Request
 const searchSongs = (e) => {

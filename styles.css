@@ -175,5 +175,10 @@ audio:hover {
     .favBtn{
         opacity: 1;
     }
+
+    h2{
+        margin-top: 10vh;
+        font-size: 2rem !important;
+    }
     
 }

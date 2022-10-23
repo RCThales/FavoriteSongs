@@ -169,3 +169,11 @@ audio:hover {
 .nav-link{
     margin: 10px;
 }
+
+@media screen and (max-width: 600px) {
+
+    .favBtn{
+        opacity: 1;
+    }
+    
+}

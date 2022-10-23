@@ -295,7 +295,7 @@ const renderFavoriteSongs = () => {
         card.appendChild(cardDown)
         list.appendChild(card)
 
-        favBtn.addEventListener('click', () => {
+        favBtn.addEventListener('pointerup', () => {
             removeFromFavPage(element, card) 
         }) 
 

@@ -165,3 +165,7 @@ audio:hover {
     opacity: 1 !important;
     cursor: pointer;
 }
+
+.nav-link{
+    margin: 10px;
+}

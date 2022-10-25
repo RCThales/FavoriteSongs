@@ -6,9 +6,9 @@ let limit = 10;
 const load = () => {
   
     //Getting information from local storage on load
-    if(localStorage.getItem('Favorites') !== null) favorites = JSON.parse(localStorage.getItem('Favorites'))
+    if(sessionStorage.getItem('Favorites') !== null) favorites = JSON.parse(sessionStorage.getItem('Favorites'))
 
-    if(localStorage.getItem('FavoriteIds') !== null) favoriteIds = JSON.parse(localStorage.getItem('FavoriteIds'));
+    if(sessionStorage.getItem('FavoriteIds') !== null) favoriteIds = JSON.parse(sessionStorage.getItem('FavoriteIds'));
     
     document.getElementById('currentLimit').textContent = limit
 
@@ -22,8 +22,8 @@ const load = () => {
         const input = document.getElementById('search')
         input.value = ''
 
-           if(localStorage.getItem('lastSearch') !== null){
-        input.value = localStorage.getItem('lastSearch')
+           if(sessionStorage.getItem('lastSearch') !== null){
+        input.value = sessionStorage.getItem('lastSearch')
         }
 
         searchSongs(input.value)
@@ -49,7 +49,7 @@ const searchFunction = () => {
     const search = document.getElementById('search')
 
     searchSongs(search.value)
-    localStorage.setItem('lastSearch', search.value)
+    sessionStorage.setItem('lastSearch', search.value)
 
 }
 
@@ -211,7 +211,7 @@ const renderFavoriteSongs = () => {
     list.innerHTML = ''
 
     //Updating the visual feedback if removed all favorites
-    let currentFavorites = JSON.parse(localStorage.getItem('Favorites'))
+    let currentFavorites = JSON.parse(sessionStorage.getItem('Favorites'))
     //Showing feedback img if there are no elements
     if(currentFavorites.length === 0){
         document.getElementById('noSongs').style.display = 'flex';
@@ -313,8 +313,8 @@ const addToFav = (target) => {
     favorites.push(target)
     favoriteIds = favorites.map((element) => element.trackId)
 
-    localStorage.setItem('FavoriteIds', JSON.stringify(favoriteIds))
-    localStorage.setItem('Favorites', JSON.stringify(favorites))
+    sessionStorage.setItem('FavoriteIds', JSON.stringify(favoriteIds))
+    sessionStorage.setItem('Favorites', JSON.stringify(favorites))
 
     const toastLiveExample = document.querySelector('.toastAdd')
     const toast = new bootstrap.Toast(toastLiveExample)
@@ -333,8 +333,8 @@ const removeFromFav = (target) => {
     favorites.splice(index, 1)
     favoriteIds.splice(index, 1)
 
-    localStorage.setItem('FavoriteIds', JSON.stringify(favoriteIds))
-    localStorage.setItem('Favorites', JSON.stringify(favorites))
+    sessionStorage.setItem('FavoriteIds', JSON.stringify(favoriteIds))
+    sessionStorage.setItem('Favorites', JSON.stringify(favorites))
 
     const toastLiveExample = document.querySelector('.toastRemove')
     const toast = new bootstrap.Toast(toastLiveExample)
@@ -351,8 +351,8 @@ const removeFromFavPage = (target, div) => {
     favorites.splice(index, 1)
     favoriteIds.splice(index, 1)
 
-    localStorage.setItem('FavoriteIds', JSON.stringify(favoriteIds))
-    localStorage.setItem('Favorites', JSON.stringify(favorites))
+    sessionStorage.setItem('FavoriteIds', JSON.stringify(favoriteIds))
+    sessionStorage.setItem('Favorites', JSON.stringify(favorites))
 
     const toastLiveExample = document.querySelector('.toastRemove')
     const toast = new bootstrap.Toast(toastLiveExample)
@@ -369,7 +369,7 @@ const removeFromFavPage = (target, div) => {
 
 const changeLimit = (value) => {
     limit = value
-    searchSongs(localStorage.getItem('lastSearch'))
+    searchSongs(sessionStorage.getItem('lastSearch'))
     document.getElementById('currentLimit').textContent = limit
     
 }

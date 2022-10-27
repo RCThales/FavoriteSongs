@@ -6,9 +6,9 @@ let limit = 10;
 const load = () => {
   
     //Getting information from local storage on load
-    if(sessionStorage.getItem('Favorites') !== null) favorites = JSON.parse(sessionStorage.getItem('Favorites'))
+    if(localStorage.getItem('Favorites') !== null) favorites = JSON.parse(localStorage.getItem('Favorites'))
 
-    if(sessionStorage.getItem('FavoriteIds') !== null) favoriteIds = JSON.parse(sessionStorage.getItem('FavoriteIds'));
+    if(localStorage.getItem('FavoriteIds') !== null) favoriteIds = JSON.parse(localStorage.getItem('FavoriteIds'));
     
     document.getElementById('currentLimit').textContent = limit
 
@@ -22,8 +22,8 @@ const load = () => {
         const input = document.getElementById('search')
         input.value = ''
 
-           if(sessionStorage.getItem('lastSearch') !== null){
-        input.value = sessionStorage.getItem('lastSearch')
+           if(localStorage.getItem('lastSearch') !== null){
+        input.value = localStorage.getItem('lastSearch')
         }
 
         searchSongs(input.value)
@@ -49,7 +49,7 @@ const searchFunction = () => {
     const search = document.getElementById('search')
 
     searchSongs(search.value)
-    sessionStorage.setItem('lastSearch', search.value)
+    localStorage.setItem('lastSearch', search.value)
 
 }
 
@@ -74,7 +74,7 @@ const searchSongs = (e) => {
 const renderSongs = (value) => {
 
     let list = document.getElementById('listing')
-    list.innerHTML = ''
+    list.textContent = ''
     const currentSongs = value.map((element) => ({     
         artWork: element.artworkUrl100,
         trackName: element.trackName,
@@ -116,45 +116,45 @@ const renderSongs = (value) => {
         const trackName = document.createElement('div')
         trackName.className = 'trackName'
 
-        trackName.innerHTML = element.trackName
+        trackName.textContent = element.trackName
 
         //Checking if song name is too big and creating a hover effect to reveal it
         if(element.trackName.length > 40){
-            trackName.innerHTML = ''
+            trackName.textContent = ''
             let compressedTrackName = '';
             for (let index = 0; index < 40; index++) {
-                trackName.innerHTML += element.trackName[index]       
+                trackName.textContent += element.trackName[index]       
             }
-            compressedTrackName = trackName.innerHTML += '...'
+            compressedTrackName = trackName.textContent += '...'
 
             card.addEventListener('mouseover',(e) => {
-                trackName.innerHTML = element.trackName
+                trackName.textContent = element.trackName
             })
 
              card.addEventListener('mouseleave',(e) => {
-                trackName.innerHTML = compressedTrackName
+                trackName.textContent = compressedTrackName
             })
         }
 
         const artistName = document.createElement('div')
         artistName.className = 'artistName'
-        artistName.innerHTML = element.artistName 
+        artistName.textContent = element.artistName 
 
         //Checking if song name is too big and creating a hover effect to reveal it
         if(element.artistName.length > 40){
-            artistName.innerHTML = ''
+            artistName.textContent = ''
             let compressedArtistName = '';
             for (let index = 0; index < 40; index++) {
-                artistName.innerHTML += element.artistName[index]       
+                artistName.textContent += element.artistName[index]       
             }
-            compressedArtistName = artistName.innerHTML += '...'
+            compressedArtistName = artistName.textContent += '...'
 
             card.addEventListener('pointerover',(e) => {
-                artistName.innerHTML = element.artistName
+                artistName.textContent = element.artistName
             })
 
              card.addEventListener('pointerleave',(e) => {
-                artistName.innerHTML = compressedArtistName
+                artistName.textContent = compressedArtistName
             })
         }
 
@@ -208,10 +208,10 @@ const renderSongs = (value) => {
 const renderFavoriteSongs = () => {
 
     let list = document.getElementById('listingFavorites')
-    list.innerHTML = ''
+    list.textContent = ''
 
     //Updating the visual feedback if removed all favorites
-    let currentFavorites = JSON.parse(sessionStorage.getItem('Favorites'))
+    let currentFavorites = JSON.parse(localStorage.getItem('Favorites'))
     //Showing feedback img if there are no elements
     if(currentFavorites.length === 0){
         document.getElementById('noSongs').style.display = 'flex';
@@ -240,29 +240,29 @@ const renderFavoriteSongs = () => {
     const trackName = document.createElement('div')
     trackName.className = 'trackName'
 
-    trackName.innerHTML = element.trackName
+    trackName.textContent = element.trackName
 
     //Checking if song name is too big and creating a hover effect to reveal it
     if(element.trackName.length > 40){
-        trackName.innerHTML = ''
+        trackName.textContent = ''
         let compressedName = '';
         for (let index = 0; index < 40; index++) {
-            trackName.innerHTML += element.trackName[index]       
+            trackName.textContent += element.trackName[index]       
         }
-        compressedName = trackName.innerHTML += '...'
+        compressedName = trackName.textContent += '...'
 
         card.addEventListener('mouseover',(e) => {
-            trackName.innerHTML = element.trackName
+            trackName.textContent = element.trackName
         })
 
             card.addEventListener('mouseleave',(e) => {
-            trackName.innerHTML = compressedName
+            trackName.textContent = compressedName
         })
         }
 
         const artistName = document.createElement('div')
         artistName.className = 'artistName'
-        artistName.innerHTML = element.artistName 
+        artistName.textContent = element.artistName 
 
         artistInfo.appendChild(trackName)
         artistInfo.appendChild(artistName)
@@ -313,8 +313,8 @@ const addToFav = (target) => {
     favorites.push(target)
     favoriteIds = favorites.map((element) => element.trackId)
 
-    sessionStorage.setItem('FavoriteIds', JSON.stringify(favoriteIds))
-    sessionStorage.setItem('Favorites', JSON.stringify(favorites))
+    localStorage.setItem('FavoriteIds', JSON.stringify(favoriteIds))
+    localStorage.setItem('Favorites', JSON.stringify(favorites))
 
     const toastLiveExample = document.querySelector('.toastAdd')
     const toast = new bootstrap.Toast(toastLiveExample)
@@ -333,8 +333,8 @@ const removeFromFav = (target) => {
     favorites.splice(index, 1)
     favoriteIds.splice(index, 1)
 
-    sessionStorage.setItem('FavoriteIds', JSON.stringify(favoriteIds))
-    sessionStorage.setItem('Favorites', JSON.stringify(favorites))
+    localStorage.setItem('FavoriteIds', JSON.stringify(favoriteIds))
+    localStorage.setItem('Favorites', JSON.stringify(favorites))
 
     const toastLiveExample = document.querySelector('.toastRemove')
     const toast = new bootstrap.Toast(toastLiveExample)
@@ -351,8 +351,8 @@ const removeFromFavPage = (target, div) => {
     favorites.splice(index, 1)
     favoriteIds.splice(index, 1)
 
-    sessionStorage.setItem('FavoriteIds', JSON.stringify(favoriteIds))
-    sessionStorage.setItem('Favorites', JSON.stringify(favorites))
+    localStorage.setItem('FavoriteIds', JSON.stringify(favoriteIds))
+    localStorage.setItem('Favorites', JSON.stringify(favorites))
 
     const toastLiveExample = document.querySelector('.toastRemove')
     const toast = new bootstrap.Toast(toastLiveExample)
@@ -369,7 +369,7 @@ const removeFromFavPage = (target, div) => {
 
 const changeLimit = (value) => {
     limit = value
-    searchSongs(sessionStorage.getItem('lastSearch'))
+    searchSongs(localStorage.getItem('lastSearch'))
     document.getElementById('currentLimit').textContent = limit
     
 }
